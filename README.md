@@ -1,21 +1,28 @@
-# Sovellusohjelmointi 2 oppimistehtävät -startteri
+# An Instagram style Photogallery app.
 
-Tämä on repository Sovellusohjelmointi 2 -opintojakson oppimistehtävän palautukseen. Kaikki palautukset oppimistehtäviin tulee sijoittaa sitä vastaavaan GitHub-repositoryyn. Jokaiselle oppimistehtävälle luodaan uusi repository tehtävänannon yhteydessä olevasta linkistä.
+This is an Instagram clone app to demonstrate backend/frontend functionality and using databases (here I use PostgreSQL) to save data. Also user creation and access management and file uploading to Amazon S3 is demonstrated in the app. 
 
-## Käytön ja käyttöönoton ohjeet:
+In the app users can post/like/comment photos after creating an account and after logging in. Unregistered users will see the photos but not the comments and won't be able to comment/like the photos or upload new photos.
 
-1. Kloonaa repository omalle koneelleesi (esim. git clone *repositoryn_git-osoite*)
+## How to run the app
 
-2. Avaa kloonattu kansio Visual Studio Codella
+1. Clone the repository 
 
-3. Aloita tehtävän ratkaisu index.ts-tiedostoon. Avaa VS Coden sisäänrakennettu komentokehote (Terminal) ja käynnistä kehitysympäristö komennolla **npm start**. Aloitusrepositoryn package.json-tiedostossa on valmiiiksi määritellyt kehitysriippuvuudet: `typescript`, `ts-node`, `nodemon` ja `@types/node`. Näitä ei tarvitse erikseen asentaa. 
+2. Run npm install (on both the client folder and the root folder) 
 
-4. Toteuta sovellustasi ja ylläpidä repositoryjä Git-työkulun mukaisesti joko VS Coden Git-työkalulla tai erillisinä komentoina:
+3. Create a .env file where you need the following variables:
+   1. ACCESS_TOKEN_KEY="your access token key"
+      
+   2. DATABASE_URL="postgres://user:password@host:port/database"
+      
+   3. PORT=[your port]
+      
+   4. AWS_ACCESS_KEY_ID=[your aws access key id]
+      
+   5. AWS_SECRET_ACCESS_KEY=[your aws secret access key]
+      
+   6. AWS_BUCKET_NAME=[your aws bucket name]
 
-- git add . (Lisää muutetut tiedostot repositoryyn)
-- git commit -m "kommentti" (Vahvistaa muutokset)
-- git push origin main (Siirtää muuttuneen repositoryn Githubiin)
-
-5. Tehtävää palauttaessasi varmista, että koodistasi on viimeisin versio myös GitHubissa ja olet ilmoittanut repositoryn osoitteen tehtäväraportissa.
-
-Voit soveltaa tätä repositorya kuten haluat. Voit tehdä oppimistehtävät suoraan repositoryyn tai voit tehdä koodausta muualla ja kopioida valmiit koodit tähän repositoryyn. Tärkeintä on, että koodit ovat opettajan luettavissa GitHubissa tehtäväraportin palautuksen yhteydessä.
+4. Run npm start on both client (frontend) and root (server)
+5. Create a new user and start posting photos
+6. After creating the user you can login with those credentials later and start liking/commenting photos
