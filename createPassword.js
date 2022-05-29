@@ -1,4 +1,4 @@
-let password = "virtanen";
+let password = "yourSecretPassword";
 let hash = require("crypto")
 	.createHash("SHA512")
 	.update(password)
