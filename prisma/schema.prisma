@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id        Int        @id @default(autoincrement())
+    username  String     @unique
+    password  String
+    email     String     @unique
+    comments  Comment[]
+    photos    Photo[]    @relation(name: "UserPhotos")
+    favorites Photo[]    @relation(name: "UserFavorites")
+}
+
+model Photo {
+  id           Int       @id @default(autoincrement())
+  filename      String    @db.Text
+  userId       Int
+  timestamp    DateTime  @default(now())
+  caption      String
+  keywords     Keyword[]
+  comments     Comment[]
+  favorites    User[]    @relation(name: "UserFavorites")
+  poster       User      @relation(name: "UserPhotos", fields:[userId], references: [id])
+}
+
+model Comment {
+  id            Int      @id @default(autoincrement())
+  photoId       Int
+  userId        Int
+  commentText   String   @db.Text
+  timestamp     DateTime @default(now())
+  photo         Photo   @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  commenter     User    @relation(fields:[userId], references: [id])
+}
+
+model Keyword {
+  id            Int     @id @default(autoincrement())
+  keyword       String  @unique
+  photo         Photo[]   
+}
